@@ -6,9 +6,7 @@ export default function NavigationBar() {
       <div className="navigationBarLeft">
         <span className="logo">SafeBook</span>
       </div>
-
-
-      <div className="navigationBarCentre">
+      <div className="navigationBarCenter">
         <div className="searchBar">
           <Search />
           <input placeholder="Search for a user or post " className="searchInput" />
@@ -25,11 +23,11 @@ export default function NavigationBar() {
         <div className="navigationBarIcons">
           <div className="navigationBarIconItem">
             <AccountCircle />
-            <span className="NavigationBarIcon">1</span>
+            <span className="navigationBarIcon">1</span>
           </div>
           <div className="navigationBarIconItem">
             <Message />
-            <span className="NavigationBarIcon">2</span>
+            <span className="navigationBarIcon">2</span>
           </div>
           <div className="navigationBarIconItem">
             <CircleNotifications />
