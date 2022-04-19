@@ -1,5 +1,7 @@
-import "./leftBar.css"
+import "./leftBar.css";
 import {ViewList, Chat, Groups} from '@mui/icons-material'
+//import{Users} from "./users";
+import CloseFriend from "../closeFriend/CloseFriend";
 
 export default function LeftBar(){
     return (
@@ -23,66 +25,10 @@ export default function LeftBar(){
                 <button className="leftBarButton">Show More</button>
                 <hr className="leftBarHr"/>
                 <ul className="leftBarFriendList">
-                    <li className="leftBarFriend">
-                        <img className="leftBarFriendImage" src="" alt = ""/>
-                        <span className="leftBarFriendName">nameFill</span>
+                    {User.map(u=>(
+                        <CloseFriend key ={u.id} user={u}/>
+                    ))}
 
-                    </li>
-                    <li className="leftBarFriend">
-                        <img className="leftBarFriendImage" src="" alt = ""/>
-                        <span className="leftBarFriendName">nameFill</span>
-
-                    </li>
-                    <li className="leftBarFriend">
-                        <img className="leftBarFriendImage" src="" alt = ""/>
-                        <span className="leftBarFriendName">nameFill</span>
-
-                    </li>
-                    <li className="leftBarFriend">
-                        <img className="leftBarFriendImage" src="" alt = ""/>
-                        <span className="leftBarFriendName">nameFill</span>
-
-                    </li>
-                    <li className="leftBarFriend">
-                        <img className="leftBarFriendImage" src="" alt = ""/>
-                        <span className="leftBarFriendName">nameFill</span>
-
-                    </li>
-                    <li className="leftBarFriend">
-                        <img className="leftBarFriendImage" src="" alt = ""/>
-                        <span className="leftBarFriendName">nameFill</span>
-
-                    </li>
-                    <li className="leftBarFriend">
-                        <img className="leftBarFriendImage" src="" alt = ""/>
-                        <span className="leftBarFriendName">nameFill</span>
-
-                    </li>
-                    <li className="leftBarFriend">
-                        <img className="leftBarFriendImage" src="" alt = ""/>
-                        <span className="leftBarFriendName">nameFill</span>
-
-                    </li>
-                    <li className="leftBarFriend">
-                        <img className="leftBarFriendImage" src="" alt = ""/>
-                        <span className="leftBarFriendName">nameFill</span>
-
-                    </li>
-                    <li className="leftBarFriend">
-                        <img className="leftBarFriendImage" src="" alt = ""/>
-                        <span className="leftBarFriendName">nameFill</span>
-
-                    </li>
-                    <li className="leftBarFriend">
-                        <img className="leftBarFriendImage" src="" alt = ""/>
-                        <span className="leftBarFriendName">nameFill</span>
-
-                    </li>
-                    <li className="leftBarFriend">
-                        <img className="leftBarFriendImage" src="" alt = ""/>
-                        <span className="leftBarFriendName">nameFill</span>
-
-                    </li>
                 </ul>
 
             </div>
