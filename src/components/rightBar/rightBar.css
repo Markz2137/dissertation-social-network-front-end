@@ -16,3 +16,31 @@
     list-style: none;
 }
 
+.rightBarTitle{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.rightBarProfileFriends{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.rightBarProfileFriend{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.rightBarProfileFriendImg{
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+
+
