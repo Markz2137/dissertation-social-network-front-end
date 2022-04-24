@@ -1,7 +1,5 @@
 import "./leftBar.css";
 import {ViewList, Chat, Groups} from '@mui/icons-material'
-//import{Users} from "./users";
-import CloseFriend from "../closeFriend/CloseFriend";
 
 export default function LeftBar(){
     return (
@@ -24,12 +22,6 @@ export default function LeftBar(){
 
                 <button className="leftBarButton">Show More</button>
                 <hr className="leftBarHr"/>
-                <ul className="leftBarFriendList">
-                    {User.map(u=>(
-                        <CloseFriend key ={u.id} user={u}/>
-                    ))}
-
-                </ul>
 
             </div>
         </div>

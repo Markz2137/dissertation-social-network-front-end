@@ -1,11 +1,22 @@
 import "./navigationBar.css";
 import { Search, AccountCircle, Message, CircleNotifications } from "@mui/icons-material";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 export default function NavigationBar() {
+
+const {user} = useContext(AuthContext);
+const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
   return (
     <div className="navigationBarContainer">
       <div className="navigationBarLeft">
+
+        <Link to ="/" style={{textDecoration:"none"}}>
         <span className="logo">SafeBook</span>
+        </Link>
       </div>
+
       <div className="navigationBarCenter">
         <div className="searchBar">
           <Search />
@@ -34,7 +45,7 @@ export default function NavigationBar() {
             <span className="navigationBarIcon">1</span>
           </div>
         </div>
-        <img src="" alt="" className="notificationBarImage" />
+        <img src={user.profilePic || PF+"no-user-image-icon.png"} alt="" className="notificationBarImage" />
       </div>
     </div>
   )

@@ -1,14 +1,33 @@
 import React, { useEffect, useState } from "react";
 
-import "./post.css"
-import {MoreHoriz, FavoriteBorder, Notes} from "@mui/icons-material";
-
-////////////////////////////////import {Users} from
+import "./post.css";
+import {MoreHoriz, FavoriteBorder} from "@mui/icons-material";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import dayjs from 'dayjs';
 
 
 export default function Post({post}) {
-    const [like,setLike] = useState(post.like)
+    var relativeTime = require('dayjs/plugin/relativeTime')
+    dayjs.extend(relativeTime)
+
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const [like,setLike] = useState(post.likes.length)
     const [isLiked,setIsLiked] = useState(false)
+
+    const [user,setUser] = useState({});
+
+    useEffect(() =>{
+        const fetchUser = async () =>{
+          
+        const res = await axios.get(`/users?userId=${post.userId}`);
+        setUser(res.data);
+      
+        };
+      
+        fetchUser();
+
+    }, [post.userId]);
 
     const likeHandler =()=>{
         setLike(isLiked ? like -1 : like +1)
@@ -19,9 +38,11 @@ export default function Post({post}) {
         <div className="postWrapper">
             <div className="postTop">
                 <div className="postTopLeft">
-                    <img className="postProfilePic" src= {Users.filter((u)=> u.id === post.userId)[0].profilePicture} alt=""/>
-                    <span className="postUsername">{Users.filter((u)=> u.id === post.userId)[0].username}</span>
-                    <span className="postDate">{post.date}</span>
+                    <img className="postProfilePic" src= {user.profilePic|| PF+"no-user-image-icon.png"} alt=""/>
+                    <Link to={`profile/${user.username}`}>
+                    <span className="postUsername">{user.username}</span>
+                    </Link>
+                    <span className="postDate">{dayjs(post.createdAt).fromNow()}</span> 
 
                 </div>
                 <div className="postTopRight">
@@ -32,7 +53,7 @@ export default function Post({post}) {
                 <span className="postText">
                     {post?.body}
                 </span>
-                <img className ="postImg" src={post.photo} alt="" />
+                <img className ="postImg" src={post.img} alt="" />
             </div>
             <div className="postBottom">
                 <div className="postBottomLeft">
