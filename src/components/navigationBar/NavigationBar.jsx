@@ -6,7 +6,6 @@ import { useContext } from "react";
 export default function NavigationBar() {
 
 const {user} = useContext(AuthContext);
-const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   return (
     <div className="navigationBarContainer">
@@ -45,7 +44,9 @@ const PF = process.env.REACT_APP_PUBLIC_FOLDER;
             <span className="navigationBarIcon">1</span>
           </div>
         </div>
-        <img src={user.profilePic || PF+"no-user-image-icon.png"} alt="" className="notificationBarImage" />
+        <Link to={`/profile/${user.username}`}>
+        <img src={user.profilePic ? "assets/" + user.profilePic : "assets/no-user-image-icon.png"} alt="" className="navigationBarImage" />
+        </Link>
       </div>
     </div>
   )
