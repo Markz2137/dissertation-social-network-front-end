@@ -28,17 +28,18 @@ export default function Profile() {
           <div className="profileRight">
             <div className="profileRightTop">
               <div className="profileCover">
-                <img className="profileCoverImg" src={user.coverPic || PF+"life-cycle-facebook-cover.jpg"} alt="" />
-                <img className = "profilePicImg" src={user.profilePic || PF+"no-user-image-icon.png"} alt=""  />
+                <img className="profileCoverImg" src={user.coverPic ? PF + user.coverPic : PF+"life-cycle-facebook-cover.jpg"} alt="" />
+                <img className = "profilePicImg" src={user.profilePic ? PF + user.profilePic : PF+"no-user-image-icon.png"} alt=""  />
               </div>
               <div className="profileInfo">
                 <h4 className="profileInfoName">{user.username}</h4>
                 <span className="profileDesc">{user.desc}</span>
               </div>
             </div>
-            <div className="profileRightBottom"></div>
+            <div className="profileRightBottom">
             <Feed username={username} />
             <RightBar user={user} />
+            </div>
           </div>
         </div>
       </>

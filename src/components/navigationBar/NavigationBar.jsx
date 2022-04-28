@@ -6,7 +6,7 @@ import { useContext } from "react";
 export default function NavigationBar() {
 
 const {user} = useContext(AuthContext);
-
+const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="navigationBarContainer">
       <div className="navigationBarLeft">
@@ -45,7 +45,7 @@ const {user} = useContext(AuthContext);
           </div>
         </div>
         <Link to={`/profile/${user.username}`}>
-        <img src={user.profilePic ? "assets/" + user.profilePic : "assets/no-user-image-icon.png"} alt="" className="navigationBarImage" />
+        <img src={user.profilePic ? PF + user.profilePic : PF + "no-user-image-icon.png"} alt="" className="navigationBarImage" />
         </Link>
       </div>
     </div>

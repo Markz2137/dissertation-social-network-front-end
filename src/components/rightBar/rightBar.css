@@ -42,5 +42,28 @@
     border-radius: 5px;
 }
 
+.rightBarAddFriendButton:focus{
+    outline:none;
+}
+
+.rightBarAddFriendButton{
+    margin-top: 45px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #5fa5ff;
+    color: #ffff;
+    border-radius: 5px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    justify-content: space-around ;
+}
+
+.personAddIcon{
+    margin-right: 5px;
+}
 
 

@@ -10,3 +10,13 @@ export const LoginStart = (userCredentials) => ({
   export const LoginFailure = () => ({
     type: "LOGIN_FAILURE",
   });
+
+  export const Friend = (userID)=>({
+    type:"FRIEND",
+    payload:userID,
+  });
+
+  export const UnFriend = (userID)=>({
+    type:"UNFRIEND",
+    payload:userID,
+  });

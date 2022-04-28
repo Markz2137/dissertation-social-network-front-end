@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import "./post.css";
 import {MoreHoriz, FavoriteBorder} from "@mui/icons-material";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import dayjs from 'dayjs';
+import { AuthContext } from "../../context/AuthContext";
 
 
 export default function Post({post}) {
@@ -12,6 +13,13 @@ export default function Post({post}) {
     dayjs.extend(relativeTime)
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+    const {user:currentUser} = useContext(AuthContext)
+
+    useEffect(()=>{
+        setIsLiked(post.likes.includes(currentUser._id))
+    },[currentUser._id, post.likes])
+
     const [like,setLike] = useState(post.likes.length)
     const [isLiked,setIsLiked] = useState(false)
 
@@ -30,6 +38,11 @@ export default function Post({post}) {
     }, [post.userId]);
 
     const likeHandler =()=>{
+
+        try{
+            axios.put("/posts/"+post._id+"/like", {userId:currentUser._id})
+        }
+        catch(err){}
         setLike(isLiked ? like -1 : like +1)
         setIsLiked(!isLiked)
     }
@@ -38,7 +51,7 @@ export default function Post({post}) {
         <div className="postWrapper">
             <div className="postTop">
                 <div className="postTopLeft">
-                    <img className="postProfilePic" src= {user.profilePic || "assets/no-user-image-icon.png"} alt=""/>
+                    <img className="postProfilePic" src= {user.profilePic ? PF + user.profilePic : PF + "no-user-image-icon.png"} alt=""/>
                     <Link to={`profile/${user.username}`}>
                     <span className="postUsername">{user.username}</span>
                     </Link>
