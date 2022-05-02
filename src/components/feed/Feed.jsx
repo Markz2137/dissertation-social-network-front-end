@@ -5,7 +5,6 @@ import Post from "../post/Post";
 import axios from "axios"
 import { AuthContext } from "../../context/AuthContext";
 
-//import {Posts} from "../../../../.."
 
 export default function Feed({username}) {
 

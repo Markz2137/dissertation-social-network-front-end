@@ -10,20 +10,22 @@ import { AuthContext } from "../../context/AuthContext";
 
 export default function Post({post}) {
     var relativeTime = require('dayjs/plugin/relativeTime')
-    dayjs.extend(relativeTime)
+    dayjs.extend(relativeTime);
+    const [like,setLike] = useState(post.likes.length);
+    const [isLiked,setIsLiked] = useState(false);
+
+    const [user,setUser] = useState({});
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-    const {user:currentUser} = useContext(AuthContext)
+    const {user:currentUser} = useContext(AuthContext);
+    
 
     useEffect(()=>{
         setIsLiked(post.likes.includes(currentUser._id))
     },[currentUser._id, post.likes])
 
-    const [like,setLike] = useState(post.likes.length)
-    const [isLiked,setIsLiked] = useState(false)
-
-    const [user,setUser] = useState({});
+    
 
     useEffect(() =>{
         const fetchUser = async () =>{
@@ -52,7 +54,7 @@ export default function Post({post}) {
             <div className="postTop">
                 <div className="postTopLeft">
                     <img className="postProfilePic" src= {user.profilePic ? PF + user.profilePic : PF + "no-user-image-icon.png"} alt=""/>
-                    <Link to={`profile/${user.username}`}>
+                    <Link to={`/profile/${user.username}`}>
                     <span className="postUsername">{user.username}</span>
                     </Link>
                     <span className="postDate">{dayjs(post.createdAt).fromNow()}</span> 
@@ -65,8 +67,8 @@ export default function Post({post}) {
             <div className="postCenter">
                 <span className="postText">
                     {post?.body}
+                    <img className ="postImg" src={PF + post.img} alt="" />
                 </span>
-                <img className ="postImg" src={post.img} alt="" />
             </div>
             <div className="postBottom">
                 <div className="postBottomLeft">

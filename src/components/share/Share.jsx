@@ -13,35 +13,27 @@ export default function Share() {
   const [file, setFile] = useState(null);
 
   const submitHandler = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const newPost = {
       userId: user._id,
-      body: body.current.value
-
-    }
-    if(file){
+      body: body.current.value,
+    };
+    if (file) {
       const data = new FormData();
       const fileName = Date.now() + file.name;
-      data.append("file", file);
       data.append("name", fileName);
-
+      data.append("file", file);
       newPost.img = fileName;
-
-      try{
+      console.log(newPost);
+      try {
         await axios.post("/upload", data);
-
-        window.location.reload();
-      }catch(err){
-        console.log(err);
-      }
+      } catch (err) {}
     }
-
-    try{
-        await axios.post("/posts", newPost)
-    }catch{
-
-    }
-  }
+    try {
+      await axios.post("/posts", newPost);
+      window.location.reload();
+    } catch (err) {}
+  };
 
   return (
     <div className="share">
