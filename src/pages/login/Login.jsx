@@ -3,7 +3,7 @@ import "./login.css";
 import { callLogin } from "../../apiCalls";
 import {AuthContext} from "../../context/AuthContext"
 import {CircularProgress} from "@mui/material"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -40,9 +40,11 @@ export default function Login() {
                     <button className="loginButton" type="submit" disabled={isFetching}>{isFetching ? <CircularProgress size="20px"/>  : "Log In"}</button>
 
                     <span className="loginForgot">Forgot Password?</span>
-
-                    <button className="loginRegisterButton">{isFetching? <CircularProgress size="20px"/>  : "Dont Have an Account?"}</button>
+                    
                 </form>
+                <Link to="/register" style={{textDecoration:"none"}}>
+                <span className="loginRegisterButton">{isFetching? <CircularProgress size="20px"/>  : "Dont Have an Account?"}</span>
+                </Link>
             </div>
         </div>
     </div>

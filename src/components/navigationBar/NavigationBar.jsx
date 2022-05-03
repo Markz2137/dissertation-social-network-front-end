@@ -7,6 +7,11 @@ export default function NavigationBar() {
 
 const {user} = useContext(AuthContext);
 const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+const logout = () => {
+  localStorage.clear()
+  window.location.reload();
+}
   return (
     <div className="navigationBarContainer">
       <div className="navigationBarLeft">
@@ -27,21 +32,17 @@ const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
       <div className="navigationBarRight">
         <div className="navigationBarLinks">
+        <Link to ="/" style={{textDecoration:"none", color: 'white'}}>
           <span className="navigationBarLinks">Homepage</span>
-          <span className="navigationBarLinks">For You</span>
+          </Link>
+          <button className="logoutButton" onClick={logout}>LogOut</button>
         </div>
         <div className="navigationBarIcons">
           <div className="navigationBarIconItem">
-            <AccountCircle />
-            <span className="navigationBarIcon">1</span>
-          </div>
-          <div className="navigationBarIconItem">
+            <Link to="/messenger" style={{ textDecoration: 'none',color: 'white' }}>
             <Message />
+            </Link>
             <span className="navigationBarIcon">2</span>
-          </div>
-          <div className="navigationBarIconItem">
-            <CircleNotifications />
-            <span className="navigationBarIcon">1</span>
           </div>
         </div>
         <Link to={`/profile/${user.username}`}>

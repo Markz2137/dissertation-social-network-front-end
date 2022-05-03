@@ -35,12 +35,12 @@ return (
   <div className="chatOnline">
     {onlineFriends.map((o) => (
       <div className="chatOnlineFriend" onClick={() => handleClick(o)}>
-        <div className="chatOnlineProfilePiccContainer">
+        <div className="chatOnlineProfilePicContainer">
           <img
             className="chatOnlineProfilePic"
             src={
               o?.profilePicture
-                ? PF + o?.profilePicture
+                ? PF + o.profilePicture
                 : PF + "no-user-image-icon.png"
             }
             alt=""

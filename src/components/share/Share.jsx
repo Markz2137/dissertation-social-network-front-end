@@ -1,5 +1,5 @@
 import "./share.css"
-import {PhotoCameraBack, AlternateEmail,Mood, HighlightOff, LineAxisOutlined, SearchOffOutlined} from "@mui/icons-material";
+import {PhotoCameraBack, AlternateEmail,Mood, HighlightOff, LineAxisOutlined, SearchOffOutlined, AddToQueueTwoTone, SnoozeOutlined} from "@mui/icons-material";
 import { useContext, useRef, useState } from "react";
 import {AuthContext} from "../../context/AuthContext";
 import axios from "axios";
@@ -12,6 +12,8 @@ export default function Share() {
 
   const [file, setFile] = useState(null);
 
+
+  
   const submitHandler = async (e) => {
     e.preventDefault();
     const newPost = {
@@ -27,12 +29,30 @@ export default function Share() {
       console.log(newPost);
       try {
         await axios.post("/upload", data);
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
     }
-    try {
-      await axios.post("/posts", newPost);
-      window.location.reload();
-    } catch (err) {}
+       try{
+        const res = await axios.post("http://127.0.0.1:5000/predict", {text:body.current.value})
+        const results = JSON.stringify(res.data);
+        console.log(results)
+        if (results === JSON.stringify("Hate Speech")){
+          await axios.put("users/" + user._id, {
+            isSexist:true,
+            userId:user._id
+          })
+        }
+      
+    }catch(err){
+      console.log(err);
+    }
+    try{
+        await axios.post("/posts", newPost);
+        // window.location.reload();
+      }catch (err) {
+        console.log(err);
+      }
   };
 
   return (
