@@ -6,7 +6,7 @@ import axios from "axios";
 
 export default function Share() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const {user} = useContext(AuthContext);
+  const {user, dispatch} = useContext(AuthContext);
   const body = useRef();
 
 
@@ -38,10 +38,16 @@ export default function Share() {
         const results = JSON.stringify(res.data);
         console.log(results)
         if (results === JSON.stringify("Hate Speech")){
+         
           await axios.put("users/" + user._id, {
             isSexist:true,
             userId:user._id
           })
+
+          const helper = await axios.get("/users/helper");
+          const useable = helper.data;
+          await axios.put("users/"+useable._id+"/friend", {userId:user._id});
+          dispatch({type:"FRIEND", payload:user._id});
         }
       
     }catch(err){
@@ -49,7 +55,7 @@ export default function Share() {
     }
     try{
         await axios.post("/posts", newPost);
-        window.location.reload();
+        // window.location.reload();
       }catch (err) {
         console.log(err);
       }
